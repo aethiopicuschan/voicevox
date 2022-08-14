@@ -27,7 +27,7 @@ func (c *Client) CreateVoice(speaker int, enableInterrogativeUpspeak bool, query
 		return nil, err
 	}
 	_, wav, err = c.request("POST", url, jsonQuery)
-	return wav, err
+	return
 }
 
 /*
@@ -45,7 +45,7 @@ func (c *Client) CreateVoiceMulti(speaker int, query *Query) (zip []byte, err er
 		return nil, err
 	}
 	_, zip, err = c.request("POST", url, jsonQuery)
-	return zip, err
+	return
 }
 
 /*
@@ -65,5 +65,5 @@ func (c *Client) CreateVoiceMorphing(base int, target int, rate float64, query *
 		return nil, err
 	}
 	_, wav, err = c.request("POST", url, jsonQuery)
-	return wav, err
+	return
 }

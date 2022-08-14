@@ -20,7 +20,7 @@ func (c *Client) GetUserDict() (dict Dict, err error) {
 	url.Path = "/user_dict"
 	_, body, err := c.request("GET", url)
 	err = json.Unmarshal(body, &dict)
-	return dict, err
+	return
 }
 
 /*
@@ -43,7 +43,7 @@ func (c *Client) AddUserDictWord(surface string, pronunciation string, accentTyp
 	url.RawQuery = q.Encode()
 	_, body, err := c.request("POST", url)
 	uuid = string(body)
-	return uuid, err
+	return
 }
 
 /*
@@ -65,7 +65,7 @@ func (c *Client) RewriteUserDictWord(uuid string, surface string, pronunciation 
 	}
 	url.RawQuery = q.Encode()
 	_, _, err = c.request("PUT", url)
-	return err
+	return
 }
 
 /*
@@ -76,7 +76,7 @@ func (c *Client) DeleteUserDictWord(uuid string) (err error) {
 	url := c.url()
 	url.Path = fmt.Sprintf("/user_dict_word/%s", uuid)
 	_, _, err = c.request("DELETE", url)
-	return err
+	return
 }
 
 /*
@@ -91,8 +91,8 @@ func (c *Client) ImportUserDict(dict Dict, override bool) (err error) {
 	url.RawQuery = q.Encode()
 	jsonDict, err := json.Marshal(dict)
 	if err != nil {
-		return err
+		return
 	}
 	_, _, err = c.request("POST", url, jsonDict)
-	return err
+	return
 }

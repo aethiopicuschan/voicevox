@@ -22,7 +22,7 @@ func (c *Client) MargeWav(wavs []string) (wav []byte, err error) {
 		return nil, err
 	}
 	_, wav, err = c.request("POST", url, json)
-	return wav, err
+	return
 }
 
 /*
@@ -34,7 +34,7 @@ func (c *Client) GetPresets() (presets []Preset, err error) {
 	url.Path = "/presets"
 	_, body, err := c.request("GET", url)
 	err = json.Unmarshal(body, &presets)
-	return presets, err
+	return
 }
 
 /*
@@ -46,7 +46,7 @@ func (c *Client) GetVersion() (version string, err error) {
 	url.Path = "/version"
 	_, body, err := c.request("GET", url)
 	err = json.Unmarshal(body, &version)
-	return version, err
+	return
 }
 
 /*
@@ -58,7 +58,7 @@ func (c *Client) GetSpeakers() (speakers []Speaker, err error) {
 	url.Path = "/speakers"
 	_, body, err := c.request("GET", url)
 	err = json.Unmarshal(body, &speakers)
-	return speakers, err
+	return
 }
 
 /*
@@ -73,5 +73,5 @@ func (c *Client) GetSpeakerInfo(uuid string) (info SpeakerInfo, err error) {
 	url.RawQuery = q.Encode()
 	_, body, err := c.request("GET", url)
 	err = json.Unmarshal(body, &info)
-	return info, err
+	return
 }
